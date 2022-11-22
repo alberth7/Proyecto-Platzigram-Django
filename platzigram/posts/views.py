@@ -1,11 +1,12 @@
 #Django
 from django.shortcuts import render
-
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
+# Utilities
 from datetime import datetime
 
-from django.shortcuts import render
+
 # Create your views here.
 
 posts = [
@@ -49,6 +50,7 @@ posts = [
     
 #     return HttpResponse('<br>'.join(content))
 
+@login_required
 def list_post(request):
     '''List exist post'''
     return render(request, 'posts/feed.html',{'posts':posts})
